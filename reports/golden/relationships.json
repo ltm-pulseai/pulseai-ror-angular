@@ -1,0 +1,37 @@
+{
+  "feature": "relationships",
+  "captured_at": "2026-07-25T02:10:00Z",
+  "capture_method": "live — curl (direct Rails :3001, two real users) + real browser (Playwright driving Angular :4200)",
+  "flows": [
+    {
+      "name": "follow (curl)",
+      "steps": ["login as user1", "POST /api/relationships {followed_id: 2}"],
+      "expect": { "status": 200, "isFollowing": true, "relationshipId": "number" }
+    },
+    {
+      "name": "viewed user's profile reflects follower",
+      "steps": ["GET /api/users/2"],
+      "expect": { "isFollowedByCurrentUser": true, "followersCount": 1, "relationshipId": "matches create response" }
+    },
+    {
+      "name": "unfollow (curl)",
+      "steps": ["DELETE /api/relationships/:relationshipId"],
+      "expect": { "status": 200, "isFollowing": false, "relationshipId": null, "followersCount": 0 }
+    },
+    {
+      "name": "duplicate-follow guard",
+      "steps": ["follow same user twice in a row"],
+      "expect": { "both_200": true, "same_relationshipId_both_times": true, "no_duplicate_row": true }
+    },
+    {
+      "name": "browser: follow button toggles",
+      "steps": ["visit another user's profile", "click Unfollow", "click Follow"],
+      "expect": { "button_label_flips_instantly": true, "followers_count_updates_instantly": true, "no_page_reload": true, "no_console_errors": true }
+    },
+    {
+      "name": "browser: no follow button on own profile",
+      "steps": ["visit own profile"],
+      "expect": { "no_follow_button_rendered": true }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    @if (errorMessage()) {
+      <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control" />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control" />
+
+      <label class="checkbox inline">
+        <input type="checkbox" formControlName="rememberMe" /> Remember me on this computer
+      </label>
+
+      <button type="submit" class="btn btn-primary" [disabled]="submitting()">Log in</button>
+    </form>
+
+    <p>
+      New user? <a routerLink="/signup">Sign up now!</a><br />
+      Forgot password? <a routerLink="/password_resets/new">Reset it</a>
+    </p>
+  </div>
+</div>

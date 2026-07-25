@@ -1,0 +1,5 @@
+@if (isFollowing()) {
+  <button type="button" class="btn" (click)="toggle()" [disabled]="submitting()">Unfollow</button>
+} @else {
+  <button type="button" class="btn btn-primary" (click)="toggle()" [disabled]="submitting()">Follow</button>
+}

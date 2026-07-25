@@ -1,0 +1,48 @@
+{
+  "feature": "static_pages",
+  "captured_at": "2026-07-25T00:05:00Z",
+  "capture_method": "live (Ruby 3.1.7 + Bundler installed this session; captured via Playwright against `bundle exec rails s -p 3001` after fixing three env-compat issues found along the way: sqlite3 1.4.2's C extension doesn't compile under GCC 14 -> bumped to ~> 1.6 precompiled binary; Rails 6.1/Ruby 3.1 Logger load-order bug -> added `require 'logger'` in config/boot.rb and bin/webpack; bootsnap 1.7.2's realpath_cache has a Windows path bug -> bumped to ~> 1.24. Also needed Yarn + `NODE_OPTIONS=--openssl-legacy-provider` to compile webpacker assets (old webpack's MD4 hash needs OpenSSL legacy provider on Node 25). All changes are environment-compatibility fixes documented inline in rails-src, not functional changes.)",
+  "flows": [
+    {
+      "name": "home (logged out)",
+      "steps": ["visit /"],
+      "expect": {
+        "status": 200,
+        "title": "Ruby on Rails Tutorial Sample App",
+        "text_contains": [
+          "translation missing: en.static_pages.home.welcome",
+          "This is the home page for the",
+          "Sign up now!"
+        ],
+        "note": "Rails' actual current output for the <h1> is the i18n-missing string (key is commented out in en.yml) — see Open Question 1. The Angular port intentionally renders the evidently-intended copy instead; this is a documented, deliberate divergence, not a parity failure."
+      }
+    },
+    {
+      "name": "help",
+      "steps": ["visit /help"],
+      "expect": {
+        "status": 200,
+        "title": "Help | Ruby on Rails Tutorial Sample App",
+        "text_contains": ["Help", "Rails Tutorial Help page"]
+      }
+    },
+    {
+      "name": "about",
+      "steps": ["visit /about"],
+      "expect": {
+        "status": 200,
+        "title": "About | Ruby on Rails Tutorial Sample App",
+        "text_contains": ["About", "Learn Enough"]
+      }
+    },
+    {
+      "name": "contact",
+      "steps": ["visit /contact"],
+      "expect": {
+        "status": 200,
+        "title": "Contact | Ruby on Rails Tutorial Sample App",
+        "text_contains": ["Contact", "contact page"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <app-form-errors [errors]="serverErrors()" />
+
+  <textarea formControlName="content" placeholder="Compose new micropost..." class="form-control"></textarea>
+
+  <input type="file" accept="image/jpeg,image/gif,image/png" (change)="onImageSelected($event)" />
+  @if (imageError()) {
+    <div class="alert alert-danger">{{ imageError() }}</div>
+  }
+
+  <button type="submit" class="btn btn-primary" [disabled]="submitting()">Post</button>
+</form>

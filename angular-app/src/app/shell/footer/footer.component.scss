@@ -1,0 +1,15 @@
+.site-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #666;
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+}

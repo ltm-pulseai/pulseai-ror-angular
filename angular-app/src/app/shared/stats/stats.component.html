@@ -1,0 +1,10 @@
+<!--
+  Rails' _stats.html.erb links these to following_user_path/followers_user_path.
+  Those pages are Phase 4 (Relationships) scope and don't exist yet — plain
+  text here rather than a routerLink to a route that isn't built, to avoid a
+  dead click target. Revisit once Phase 4 lands.
+-->
+<div class="stats">
+  <span><strong class="stat">{{ user().followingCount }}</strong> following</span>
+  <span><strong class="stat">{{ user().followersCount }}</strong> followers</span>
+</div>

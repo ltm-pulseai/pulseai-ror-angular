@@ -1,0 +1,15 @@
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+}
+
+.stats span {
+  display: inline-block;
+  padding: 0 10px;
+  color: #666;
+}
+
+.stat {
+  display: block;
+}

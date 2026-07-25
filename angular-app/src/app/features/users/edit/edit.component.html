@@ -1,0 +1,26 @@
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    @if (successMessage()) {
+      <div class="alert alert-success">{{ successMessage() }}</div>
+    }
+    <app-form-errors [errors]="serverErrors()" />
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" class="form-control" />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control" />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control" placeholder="leave blank if unchanged" />
+
+      <label for="password_confirmation">Confirmation</label>
+      <input id="password_confirmation" type="password" formControlName="password_confirmation" class="form-control" />
+
+      <button type="submit" class="btn btn-primary" [disabled]="submitting()">Save changes</button>
+    </form>
+  </div>
+</div>

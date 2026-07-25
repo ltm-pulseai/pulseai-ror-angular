@@ -1,0 +1,42 @@
+@if (auth.currentUser(); as user) {
+  <!-- Logged-in branch — built in Phase 3 once Microposts existed to fill it. -->
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <img [src]="user.gravatarUrl" [alt]="user.name" class="gravatar" />
+        <h1>{{ user.name }}</h1>
+      </section>
+      <section class="stats">
+        <app-stats [user]="user" />
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <app-micropost-feed />
+    </div>
+  </div>
+} @else {
+  <!--
+    Logged-out branch (Phase 1 scope — see specs/01-static-pages.md section 8/9).
+    Open Question 1 resolved: the Rails i18n key (static_pages.home.welcome) is
+    commented out in en/de/es.yml, so Rails would actually render
+    "translation missing: en.static_pages.home.welcome" here today. We use the
+    evidently-intended copy ("Welcome to the Sample App", the commented-out
+    value) rather than reproducing the broken i18n output.
+  -->
+  <div class="center jumbotron">
+    <h1>Welcome to the Sample App</h1>
+
+    <h2>
+      This is the home page for the
+      <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+      sample application.
+    </h2>
+
+    <a routerLink="/signup" class="btn btn-lg btn-primary">Sign up now!</a>
+  </div>
+
+  <a href="https://rubyonrails.org/">
+    <img src="images/rails.svg" alt="Rails logo" width="200" />
+  </a>
+}

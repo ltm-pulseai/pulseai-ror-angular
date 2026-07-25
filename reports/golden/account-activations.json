@@ -1,0 +1,32 @@
+{
+  "feature": "account_activations",
+  "captured_at": "2026-07-25T03:30:00Z",
+  "capture_method": "live — curl (direct Rails :3001, real tokens from server-log-delivered mail) + real browser (Playwright driving Angular :4200)",
+  "flows": [
+    {
+      "name": "invalid token rejected",
+      "steps": ["GET /api/account_activations/bogus-token/edit?email=..."],
+      "expect": { "status": 404, "activated": false, "error": "Invalid activation link" }
+    },
+    {
+      "name": "real token activates",
+      "steps": ["signup a fresh user", "extract real token from mail log", "GET /api/account_activations/:token/edit?email=..."],
+      "expect": { "status": 200, "activated": true, "user_returned": true }
+    },
+    {
+      "name": "token reuse rejected (already activated)",
+      "steps": ["GET same token+email again"],
+      "expect": { "status": 404, "activated": false }
+    },
+    {
+      "name": "login works post-activation",
+      "steps": ["POST /api/login with the newly-activated account"],
+      "expect": { "status": 200 }
+    },
+    {
+      "name": "browser: full signup->activate->auto-login flow",
+      "steps": ["signup a second fresh user (curl)", "extract real token from mail log", "visit /account_activations/:token/edit?email=... in browser"],
+      "expect": { "auto_navigates_to_profile": true, "header_shows_logged_in_nav": true, "no_console_errors": true }
+    }
+  ]
+}

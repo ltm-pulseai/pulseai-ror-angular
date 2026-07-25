@@ -1,0 +1,36 @@
+@if (notFound()) {
+  <h1>Not found</h1>
+  <p>We're sorry, but the page you were looking for doesn't exist.</p>
+} @else if (data(); as data) {
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <img [src]="data.user.gravatarUrl" [alt]="data.user.name" class="gravatar" />
+        <h1>{{ data.user.name }}</h1>
+      </section>
+      @if (auth.currentUser() && auth.currentUser()!.id !== data.user.id) {
+        <section class="follow_form">
+          <app-follow-button [profileUser]="data.user" (stateChange)="onFollowStateChange($event)" />
+        </section>
+      }
+      <section class="stats">
+        <app-stats [user]="data.user" />
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Microposts ({{ data.user.micropostsCount }})</h3>
+      @if (data.microposts.length === 0) {
+        <p>No microposts yet.</p>
+      } @else {
+        <ol class="microposts">
+          @for (post of data.microposts; track post.id) {
+            <li>
+              <span class="content">{{ post.content }}</span>
+              <span class="timestamp">{{ post.createdAt | date: 'medium' }}</span>
+            </li>
+          }
+        </ol>
+      }
+    </div>
+  </div>
+}

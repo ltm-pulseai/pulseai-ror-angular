@@ -1,0 +1,6 @@
+@for (message of flash.messages(); track message.id) {
+  <div class="alert alert-{{ message.type }}">
+    {{ message.text }}
+    <button type="button" (click)="flash.dismiss(message.id)" aria-label="Dismiss">&times;</button>
+  </div>
+}

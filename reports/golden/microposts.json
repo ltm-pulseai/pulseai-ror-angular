@@ -1,0 +1,47 @@
+{
+  "feature": "microposts",
+  "captured_at": "2026-07-25T01:40:00Z",
+  "capture_method": "live — curl (direct Rails :3001) + real browser (Playwright driving Angular :4200) against the running dev stack",
+  "flows": [
+    {
+      "name": "create micropost (curl)",
+      "steps": ["login", "POST /api/microposts with content only"],
+      "expect": { "status": 201, "body_contains_micropost": true }
+    },
+    {
+      "name": "feed reflects new post",
+      "steps": ["GET /api/feed"],
+      "expect": { "status": 200, "feedItems_length": 1 }
+    },
+    {
+      "name": "delete micropost (curl)",
+      "steps": ["DELETE /api/microposts/:id"],
+      "expect": { "status": 204 }
+    },
+    {
+      "name": "feed empty after delete",
+      "steps": ["GET /api/feed"],
+      "expect": { "status": 200, "feedItems_length": 0 }
+    },
+    {
+      "name": "browser: home page logged-in branch",
+      "steps": ["log in", "visit /"],
+      "expect": { "shows": "gravatar, name, stats, micropost form, feed" }
+    },
+    {
+      "name": "browser: post via form",
+      "steps": ["type content into textarea", "click Post"],
+      "expect": { "new_item_appears_immediately": true, "no_console_errors": true }
+    },
+    {
+      "name": "browser: delete via confirm()",
+      "steps": ["click delete", "accept native confirm dialog"],
+      "expect": { "item_removed": true, "no_console_errors": true }
+    },
+    {
+      "name": "browser: profile page shows own microposts",
+      "steps": ["visit /users/:id after posting"],
+      "expect": { "shows": "Microposts (N) count + list with content/timestamp" }
+    }
+  ]
+}

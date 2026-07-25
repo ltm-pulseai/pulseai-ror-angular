@@ -1,0 +1,23 @@
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin: 1rem 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-success { color: #3c763d; background: #dff0d8; border-color: #d6e9c6; }
+.alert-info { color: #31708f; background: #d9edf7; border-color: #bce8f1; }
+.alert-warning { color: #8a6d3b; background: #fcf8e3; border-color: #faebcc; }
+.alert-danger { color: #a94442; background: #f2dede; border-color: #ebccd1; }
+
+button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+}

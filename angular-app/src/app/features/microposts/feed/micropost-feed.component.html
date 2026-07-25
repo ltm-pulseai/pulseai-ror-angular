@@ -1,0 +1,15 @@
+@if (showForm()) {
+  <app-micropost-form (created)="onCreated($event)" />
+}
+
+@if (loading()) {
+  <p>Loading...</p>
+} @else if (items().length === 0) {
+  <p>No microposts yet.</p>
+} @else {
+  <ol class="microposts">
+    @for (item of items(); track item.id) {
+      <app-micropost-item [micropost]="item" (deleted)="onDeleted($event)" />
+    }
+  </ol>
+}

@@ -1,0 +1,62 @@
+{
+  "feature": "users+sessions",
+  "captured_at": "2026-07-25T00:25:00Z",
+  "capture_method": "live — curl (direct Rails :3001) + real browser (Playwright driving Angular :4200) against the running dev stack",
+  "flows": [
+    {
+      "name": "signup (unactivated)",
+      "steps": ["POST /api/users with valid name/email/password/password_confirmation"],
+      "expect": { "status": 201, "body_contains": "Please check your email to activate your account." }
+    },
+    {
+      "name": "login blocked before activation",
+      "steps": ["POST /api/login with the just-signed-up (unactivated) account"],
+      "expect": { "status": 403, "error": "Account not activated. Check your email for the activation link." }
+    },
+    {
+      "name": "login after activation",
+      "steps": ["activate user directly (rails runner, stand-in for the real account_activations email link — that feature is Phase 6)", "POST /api/login"],
+      "expect": { "status": 200, "body_contains_user": true }
+    },
+    {
+      "name": "me reflects session",
+      "steps": ["GET /api/me after login, with cookies"],
+      "expect": { "status": 200, "user": "matches logged-in user" }
+    },
+    {
+      "name": "logout",
+      "steps": ["DELETE /api/logout"],
+      "expect": { "status": 204 }
+    },
+    {
+      "name": "me after logout",
+      "steps": ["GET /api/me after logout"],
+      "expect": { "status": 200, "user": null }
+    },
+    {
+      "name": "browser: login form -> header shows logged-in nav",
+      "steps": ["visit /login", "fill email/password", "submit"],
+      "expect": { "redirects_to": "/", "header_shows": "Users link + Account dropdown (Profile/Settings/Log out) for the logged-in user" }
+    },
+    {
+      "name": "browser: /users guarded",
+      "steps": ["while logged out, visit /users"],
+      "expect": { "redirected_to": "/login" }
+    },
+    {
+      "name": "browser: profile page",
+      "steps": ["visit /users/:id while logged in"],
+      "expect": { "shows": "name, gravatar, following/followers counts, micropost count" }
+    },
+    {
+      "name": "browser: edit profile",
+      "steps": ["visit /users/:id/edit", "change name", "submit"],
+      "expect": { "shows": "Profile updated", "PATCH /api/users/:id returns 200" }
+    },
+    {
+      "name": "browser: logout",
+      "steps": ["click Log out in header dropdown"],
+      "expect": { "header_reverts_to": "Home/Help/Log in (logged-out nav)" }
+    }
+  ]
+}

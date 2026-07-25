@@ -1,0 +1,13 @@
+<li>
+  <a [routerLink]="['/users', micropost().userId]" class="user">{{ micropost().user.name }}</a>
+  <span class="content">
+    {{ micropost().content }}
+    @if (micropost().image.attached && micropost().image.url) {
+      <img [src]="micropost().image.url" [alt]="micropost().content" />
+    }
+  </span>
+  <span class="timestamp">{{ micropost().createdAt | date: 'medium' }}</span>
+  @if (auth.currentUser()?.id === micropost().userId) {
+    <button type="button" (click)="delete()">delete</button>
+  }
+</li>

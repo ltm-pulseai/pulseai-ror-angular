@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Ported from rails-src/app/assets/stylesheets/custom.scss — shared theme
+   rules used across pages, not specific to any one feature (see
+   specs/01-static-pages.md section 7). */
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* Shared form/grid/button utility classes for Phase 2+ forms (login, signup,
+   edit profile) — kept as lightweight Bootstrap-3-flavored CSS rather than
+   pulling in Bootstrap's JS/jQuery, per specs/02-users.md section 7. */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-md-offset-3 {
+  margin-left: 25%;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form label.checkbox {
+  font-weight: normal;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background: #337ab7;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background: #f2dede;
+  border: 1px solid #ebccd1;
+}
+
+ul.error-list {
+  color: #a94442;
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
