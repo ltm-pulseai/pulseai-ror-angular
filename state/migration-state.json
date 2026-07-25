@@ -18,5 +18,13 @@
     "status": "pass",
     "note": "routes.rb pure /api scope; all 7 controllers JSON-only; destroy/following/followers dropped (user decision); ERB deleted except mailer views; Minitest suite rewritten for JSON reality (52 runs/135 assertions/0 failures/0 errors); found+fixed real rescue_from ActiveRecord::RecordNotFound gap; turbolinks/webpacker/dead SCSS/root package.json removed; rack-cors + config/initializers/cors.rb added for production. Full whole-journey browser regression passed (signup->activate->post->follow->edit->password-reset->logout, 2 fresh users, real mail-log tokens). See reports/parity/phase7-cutover.md.",
     "rails_status": "json_api_only"
+  },
+  "phase8_docs_presentation": {
+    "docs_status": "written",
+    "docs_path": "docs/MIGRATION_PROCESS.md",
+    "presentation_status": "generating",
+    "gamma_generation_id": "BnStvpGrGEUdnvCmXj3ZB",
+    "gamma_url": "https://gamma.app/generations/BnStvpGrGEUdnvCmXj3ZB",
+    "note": "Gamma generation kicked off from docs/MIGRATION_PROCESS.md (condense mode); async on Gamma's side, status was 'pending' at last check."
   }
 }

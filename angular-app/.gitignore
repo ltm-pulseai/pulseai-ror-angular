@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Dev-server debug logs (this session's Start-Process redirection)
+/ng_stdout.log
+/ng_stderr.log
