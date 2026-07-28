@@ -19,7 +19,7 @@ way (not just ported).
 - **Live-demo deck** (click-through, before/after code transformation):
   https://claude.ai/code/artifact/77f2da1b-baca-4fd8-a70f-9543a4c1e13a
 - **Gamma presentation** (generated from the process write-up):
-  https://gamma.app/generations/BnStvpGrGEUdnvCmXj3ZB
+  https://gamma.app/docs/zpyq93kv7fpyg0n
 - **Knowledge graph** (interactive, `graphify` output): `graphify-out/graph.html`
 
 ## Repo layout

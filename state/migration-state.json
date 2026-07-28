@@ -22,9 +22,9 @@
   "phase8_docs_presentation": {
     "docs_status": "written",
     "docs_path": "docs/MIGRATION_PROCESS.md",
-    "presentation_status": "generating",
-    "gamma_generation_id": "BnStvpGrGEUdnvCmXj3ZB",
-    "gamma_url": "https://gamma.app/generations/BnStvpGrGEUdnvCmXj3ZB",
-    "note": "Gamma generation kicked off from docs/MIGRATION_PROCESS.md (condense mode); async on Gamma's side, status was 'pending' at last check."
+    "presentation_status": "done",
+    "gamma_generation_id": "excYyxuP73j8LeAZrDtH5",
+    "gamma_url": "https://gamma.app/docs/zpyq93kv7fpyg0n",
+    "note": "First generation (BnStvpGrGEUdnvCmXj3ZB) read as generic/AI-templated per user feedback; regenerated with themeId 'founder' (dark #111213 bg, purple accent, DM Sans/Inter), imageOptions noImages, and explicit anti-generic-deck instructions. Completed."
   }
 }
