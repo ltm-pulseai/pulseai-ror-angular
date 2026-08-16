@@ -19,6 +19,18 @@ starts and ends in the exact same pristine, committed state.
 - A browser tab logged in on a profile page (so the Follow/Unfollow button is one click away throughout)
 - `git status` clean on the repo before starting (Step 1 enforces this anyway)
 
+## Reporting style
+
+Report each step as one line, not prose: `[n/9] <step name> ... DONE` (or
+`FAILED — <reason>`). Do this for both the top-level steps below and for the
+sub-invocations of `codespec-generate`/`feature-migrate`/`parity-verify` —
+name each of their tool calls tersely as it happens (file read, file
+written, command run), not paragraph explanations of why. Save the
+plain-language narration for the presenter's own spoken script
+(`ror-angular-live-demo/LIVE_DEMO_SCRIPT.md`), not for this output — the
+audience hears the "why" from the presenter, they don't need to read it
+twice.
+
 ## Steps
 
 1. **Reset**: run `scripts/cleanup.sh`. It refuses (exit non-zero, prints the diff) if anything is dirty outside its known target paths — resolve that first rather than forcing past it. On success it prints a clean `git status --porcelain` for every target path.
